@@ -121,5 +121,5 @@ A good video prompt answers: **shot type + subject + action + place + light + ca
 - [ ] Record narration
 - [x] Shot 7: end card
 - [x] Full cut: all 7 shots, captions instead of voice
-- [ ] Edit everything together (final)
-- [ ] Export the final 30-second film
+- [x] Edit everything together (final): `make_final_film.sh`
+- [x] Export the final film (35s with credits): `renders/the_lighthouse_FINAL.mp4`
