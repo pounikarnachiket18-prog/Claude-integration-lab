@@ -10,14 +10,17 @@
 #
 # Cost: free.
 # How to run it (from the repo's top folder):
-#   bash 06-ai-video/04-remotion/render_logo_reveal.sh
+#   bash 06-ai-video/04-remotion/render_logo_reveal.sh                                          (Lighthouse Studio)
+#   bash 06-ai-video/04-remotion/render_logo_reveal.sh MindsetModeLogo mindset_mode_india_logo  (Mindset Mode India)
 
 set -e
 cd "$(dirname "$0")"
 mkdir -p out
+COMP="${1:-LogoReveal}"      # which composition to render
+NAME="${2:-logo_reveal}"     # output file name (without .mp4)
 
 echo "Rendering the picture..."
-npx remotion render LogoReveal out/logo_reveal_picture.mp4 --crf=18
+npx remotion render "$COMP" "out/${NAME}_picture.mp4" --crf=18
 
 HIT=1.0     # frame 30 / 30 fps: the lamp pop
 SHING=2.25  # just after frame 66 / 30 fps: the light sweep reaches the first letter
@@ -39,10 +42,10 @@ ffmpeg -y -v error \
 [4:a]lowpass=f=200,afade=t=out:st=3.6:d=1.4,volume=0.8[hum];\
 [riser][hit][sparkle][shing][hum]amix=inputs=5:normalize=0,\
 alimiter=limit=0.95,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000" \
-  -c:a pcm_s16le out/logo_reveal_sound.wav
+  -c:a pcm_s16le "out/${NAME}_sound.wav"
 
-ffmpeg -y -v error -i out/logo_reveal_picture.mp4 -i out/logo_reveal_sound.wav \
+ffmpeg -y -v error -i "out/${NAME}_picture.mp4" -i "out/${NAME}_sound.wav" \
   -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart \
-  out/logo_reveal.mp4
+  "out/${NAME}.mp4"
 
-echo "Done! out/logo_reveal.mp4"
+echo "Done! out/${NAME}.mp4"
