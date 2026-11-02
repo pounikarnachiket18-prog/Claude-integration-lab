@@ -12,7 +12,8 @@ claude-integration-lab/
 ├── 02-mcp-servers/           ← Give Claude new tools
 ├── 03-claude-code-skills/    ← Teach Claude Code how to do tasks your way
 ├── 04-github-integrations/   ← Use Claude with GitHub
-└── 05-ai-agents/             ← Let Claude take steps on its own toward a goal
+├── 05-ai-agents/             ← Let Claude take steps on its own toward a goal
+└── 06-ai-video/              ← Make cinematic videos with Claude's help
 ```
 
 ## The topics in simple words
@@ -32,6 +33,9 @@ GitHub stores code and tracks changes. Integrations let Claude help there: revie
 ### 5. AI agents: Claude that takes action
 An agent is Claude working in a loop: plan a step, use a tool, check the result, repeat until the goal is done. Agents combine all the earlier topics.
 
+### 6. AI video: make cinematic videos
+Claude acts as a director's assistant: writing scripts, planning shots, writing code that makes video, and editing clips together. We start with free methods and add paid AI footage later.
+
 ## Why this order?
 Each topic builds on the one before it:
 **APIs** (the basics) → **MCP** (tools) → **Skills** (instructions) → **GitHub** (real workflows) → **Agents** (all of it together).
@@ -42,5 +46,6 @@ Each topic builds on the one before it:
 - [ ] 03 – Claude Code skills
 - [ ] 04 – GitHub integrations
 - [ ] 05 – AI agents
+- [ ] 06 – AI video
 
 No packages are installed and no paid APIs are used yet.
