@@ -8,6 +8,7 @@ import { LOGO_DURATION, LogoReveal } from "./LogoReveal";
 import { MINDSET_LOGO_DURATION, MindsetModeLogo } from "./MindsetModeLogo";
 import { INTRO20_DURATION, MindsetIntro20 } from "./MindsetIntro20";
 import { NUCLEAR_DURATION, NuclearExplainer } from "./NuclearExplainer";
+import { MOTIVATION_DURATION, MotivationTransitions } from "./MotivationTransitions";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -92,6 +93,16 @@ export const RemotionRoot: React.FC = () => {
         id="NuclearExplainer"
         component={NuclearExplainer}
         durationInFrames={NUCLEAR_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      {/* Mindset Mode India: motivational Reel with seamless transitions (run render_motivation.sh) */}
+      <Composition
+        id="MotivationTransitions"
+        component={MotivationTransitions}
+        durationInFrames={MOTIVATION_DURATION}
         fps={30}
         width={1080}
         height={1920}
