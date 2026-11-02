@@ -1,0 +1,15 @@
+# Secrets: never upload these
+.env
+*.env
+
+# Python virtual environment (each person creates their own)
+.venv/
+
+# Python cache files (created automatically, not needed in git)
+__pycache__/
+*.pyc
+
+# Editor / OS clutter
+.DS_Store
+.vscode/
+.idea/
