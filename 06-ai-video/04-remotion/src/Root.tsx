@@ -6,6 +6,7 @@ import { FINAL_DURATION, LighthouseFinal } from "./LighthouseFinal";
 import { SLEEP_REEL_DURATION, SleepReel } from "./SleepReel";
 import { LOGO_DURATION, LogoReveal } from "./LogoReveal";
 import { MINDSET_LOGO_DURATION, MindsetModeLogo } from "./MindsetModeLogo";
+import { INTRO20_DURATION, MindsetIntro20 } from "./MindsetIntro20";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -70,6 +71,16 @@ export const RemotionRoot: React.FC = () => {
         id="MindsetModeLogo"
         component={MindsetModeLogo}
         durationInFrames={MINDSET_LOGO_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* Mindset Mode India 20-second channel intro (run render_mindset_intro20.sh) */}
+      <Composition
+        id="MindsetIntro20"
+        component={MindsetIntro20}
+        durationInFrames={INTRO20_DURATION}
         fps={30}
         width={1920}
         height={1080}

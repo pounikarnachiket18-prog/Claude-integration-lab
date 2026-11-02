@@ -33,7 +33,7 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 export const MINDSET_LOGO_DURATION = 150;
 
 // ---- The icon: a sun rising behind a mountain peak with a summit flag (SVG) ----------
-const Icon: React.FC = () => {
+export const MindsetIcon: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -176,7 +176,7 @@ export const MindsetModeLogo: React.FC = () => {
 
         {/* Icon */}
         <div style={{ position: "absolute", left: 960 - 200, top: 300 - 142 }}>
-          <Icon />
+          <MindsetIcon />
         </div>
         <Sparks />
 
