@@ -7,6 +7,7 @@ import { SLEEP_REEL_DURATION, SleepReel } from "./SleepReel";
 import { LOGO_DURATION, LogoReveal } from "./LogoReveal";
 import { MINDSET_LOGO_DURATION, MindsetModeLogo } from "./MindsetModeLogo";
 import { INTRO20_DURATION, MindsetIntro20 } from "./MindsetIntro20";
+import { NUCLEAR_DURATION, NuclearExplainer } from "./NuclearExplainer";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -84,6 +85,16 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+
+      {/* Faceless explainer Short: how a nuclear bomb explodes (run render_nuclear_explainer.sh) */}
+      <Composition
+        id="NuclearExplainer"
+        component={NuclearExplainer}
+        durationInFrames={NUCLEAR_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
       />
     </>
   );
