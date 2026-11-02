@@ -37,9 +37,9 @@ Spoken slowly by a calm, older voice. About 35 words, so there's room to breathe
 | 1 | 0:00–0:05 | 5s | Title: **THE LIGHTHOUSE** on dark blue, letterbox bars | Slow push-in | Drone + whoosh | 🟢 Way 1: **already made!** (`01-title-card`) |
 | 2 | 0:05–0:09 | 4s | A lighthouse on a cliff at dusk, storm clouds, waves crashing below | Wide shot, slow drift right | Waves, wind, narration starts | 🔴 Way 3 (AI) · or 🟡 Way 2 (stock) |
 | 3 | 0:09–0:13 | 4s | Old hands turning a brass key; a lamp flickers on, warm orange glow | Close-up, still | Click of the key, soft hum | 🔴 Way 3 · or 🟡 Way 2 (**film your own hands on iPad!**) |
-| 4 | 0:13–0:17 | 4s | The beam sweeps slowly across a dark, empty sea | Wide, still | Low drone, distant waves | 🔴 Way 3 · or 🟢 Way 1 (simple animated beam) |
+| 4 | 0:13–0:17 | 4s | The beam sweeps slowly across a dark, empty sea | Wide, still | Low drone, distant waves | 🟢 Way 1: **made!** (`make_code_shots.sh`) · AI upgrade optional |
 | 5 | 0:17–0:21 | 4s | Keeper's silhouette at a rain-streaked window, looking out | Medium shot from behind | Rain on glass, narration | 🔴 Way 3 · or 🟡 Way 2 (stock) |
-| 6 | 0:21–0:25 | 4s | Far on the black horizon, a tiny light blinks back. Once. Twice. | Very slow push-in toward the dot | Everything goes quiet → *"Until tonight."* | 🟢 Way 1 (dark sea + blinking dot) · or 🔴 Way 3 |
+| 6 | 0:21–0:25 | 4s | Far on the black horizon, a tiny light blinks back. Once. Twice. | Very slow push-in toward the dot | Everything goes quiet → *"Until tonight."* | 🟢 Way 1: **made!** (`make_code_shots.sh`) |
 | 7 | 0:25–0:30 | 5s | End card: **THE LIGHTHOUSE** · *coming soon* | Fade in, fade out | Drone swells, then silence | 🟢 Way 1: reuse our title card code |
 
 **Total: 30 seconds** (5 + 4 + 4 + 4 + 4 + 4 + 5).
@@ -114,8 +114,9 @@ A good video prompt answers: **shot type + subject + action + place + light + ca
 - [x] Script
 - [x] Storyboard
 - [x] Shot 1: title card
-- [ ] Choose: free path, AI path, or mix
-- [ ] Collect / make shots 2–6
+- [x] Choose: **mix path** (free first, AI upgrades for the weakest shots)
+- [x] Shots 4 and 6: made with code
+- [ ] Collect / make shots 2, 3, 5
 - [ ] Record narration
 - [ ] Shot 7: end card
 - [ ] Edit everything together

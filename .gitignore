@@ -13,3 +13,6 @@ __pycache__/
 .DS_Store
 .vscode/
 .idea/
+
+# Rendered video shots: big files that the scripts can rebuild any time
+06-ai-video/**/shots/
