@@ -4,6 +4,7 @@ import { LighthouseTitle } from "./LighthouseTitle";
 import { LowerThird } from "./LowerThird";
 import { FINAL_DURATION, LighthouseFinal } from "./LighthouseFinal";
 import { SLEEP_REEL_DURATION, SleepReel } from "./SleepReel";
+import { LOGO_DURATION, LogoReveal } from "./LogoReveal";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -50,6 +51,16 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1080}
         height={1920}
+      />
+
+      {/* YouTube logo reveal, 5 seconds (run render_logo_reveal.sh) */}
+      <Composition
+        id="LogoReveal"
+        component={LogoReveal}
+        durationInFrames={LOGO_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );
