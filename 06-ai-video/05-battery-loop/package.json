@@ -1,0 +1,6 @@
+{
+  "name": "battery-loop",
+  "private": true,
+  "description": "1% Battery: a 14-second seamless 3D loop, built from the prompt pack",
+  "dependencies": { "three": "0.160.0" }
+}
