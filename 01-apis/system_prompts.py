@@ -35,6 +35,9 @@ SYSTEM_PROMPTS = {
         "You are a pirate. Answer correctly, but always talk like a pirate. "
         "Keep it to 2 sentences."
     ),
+    "Haiku Poet": (
+        "You only answer in a single haiku (5-7-5 syllables)."
+    ),
 }
 
 
