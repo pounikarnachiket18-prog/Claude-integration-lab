@@ -9,6 +9,9 @@ import { MINDSET_LOGO_DURATION, MindsetModeLogo } from "./MindsetModeLogo";
 import { INTRO20_DURATION, MindsetIntro20 } from "./MindsetIntro20";
 import { NUCLEAR_DURATION, NuclearExplainer } from "./NuclearExplainer";
 import { MOTIVATION_DURATION, MotivationTransitions } from "./MotivationTransitions";
+import { TVBulletin } from "./news/TVBulletin";
+import { Newspaper } from "./news/Newspaper";
+import { BULLETINS, CLIP, NEWS_REEL_DURATION, NewsReel, PAPERS } from "./news/NewsGraphics";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -107,6 +110,15 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+
+      {/* RBI documentary: 1990s TV-news and newspaper graphics (recreations) */}
+      <Composition id="NewsReel" component={NewsReel} durationInFrames={NEWS_REEL_DURATION} fps={30} width={1920} height={1080} />
+      {BULLETINS.map((b) => (
+        <Composition key={b.id} id={b.id} component={TVBulletin} defaultProps={b.props} durationInFrames={CLIP} fps={30} width={1920} height={1080} />
+      ))}
+      {PAPERS.map((p) => (
+        <Composition key={p.id} id={p.id} component={Newspaper} defaultProps={p.props} durationInFrames={CLIP} fps={30} width={1920} height={1080} />
+      ))}
     </>
   );
 };
