@@ -3,6 +3,7 @@ import { MyComposition } from "./Composition";
 import { LighthouseTitle } from "./LighthouseTitle";
 import { LowerThird } from "./LowerThird";
 import { FINAL_DURATION, LighthouseFinal } from "./LighthouseFinal";
+import { SLEEP_REEL_DURATION, SleepReel } from "./SleepReel";
 
 // Every video in this project is listed here as a <Composition>.
 export const RemotionRoot: React.FC = () => {
@@ -39,6 +40,16 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+
+      {/* Instagram Reel: 5 sleep tips, 20 seconds, vertical (run render_sleep_reel.sh) */}
+      <Composition
+        id="SleepReel"
+        component={SleepReel}
+        durationInFrames={SLEEP_REEL_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
       />
     </>
   );
