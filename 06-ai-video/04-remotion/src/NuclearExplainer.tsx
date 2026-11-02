@@ -2,6 +2,8 @@ import React from "react";
 import {
   AbsoluteFill,
   Easing,
+  Img,
+  staticFile,
   interpolate,
   random,
   Sequence,
@@ -9,6 +11,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+
 
 // "How does a nuclear bomb explode?": a 45-second faceless explainer Short
 // (1080x1920, 30 fps, 1350 frames). Textbook-level physics only.
@@ -32,6 +35,10 @@ const SANS = "'Liberation Sans', sans-serif";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 export const NUCLEAR_DURATION = 1350;
+
+// AI-generated background images (made with Canva) placed in public/ai/.
+// Set to false to render the original version with plain dark backgrounds.
+export const USE_AI_BACKGROUNDS = true;
 const CX = 540; // centre of the diagram area
 const CY = 760;
 
@@ -142,6 +149,39 @@ const Nucleus: React.FC<{ scale?: number; stretch?: number; split?: number; jigg
         );
       })}
     </>
+  );
+};
+
+// ---- AI background image with a slow "2.5D" camera move ------------------------------
+// The still image slowly pushes in and drifts, so it feels like moving footage.
+// It's darkened (dim) so the diagrams and captions on top stay easy to read.
+const BgImage: React.FC<{
+  src: string;
+  duration: number;
+  dim?: number;
+  blur?: number;
+  driftY?: number;
+}> = ({ src, duration, dim = 0.55, blur = 0, driftY = -40 }) => {
+  const frame = useCurrentFrame();
+  const scale = interpolate(frame, [0, duration], [1.06, 1.18]);
+  const y = interpolate(frame, [0, duration], [0, driftY]);
+  const fadeIn = interpolate(frame, [0, 15], [0, 1], clamp);
+  return (
+    <AbsoluteFill style={{ opacity: fadeIn, overflow: "hidden" }}>
+      <Img
+        src={staticFile(src)}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          transform: `translateY(${y}px) scale(${scale})`,
+          filter: `blur(${blur}px) saturate(1.1)`,
+        }}
+      />
+      <AbsoluteFill style={{ backgroundColor: `rgba(5,7,13,${dim})` }} />
+      {/* vignette: darker edges pull the eye to the centre */}
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0,0,0,0.75) 100%)" }} />
+    </AbsoluteFill>
   );
 };
 
@@ -431,7 +471,19 @@ const ExplosionScene: React.FC = () => {
         }}
       />
       {/* Ground */}
-      <div style={{ position: "absolute", top: GROUND, left: 0, right: 0, bottom: 0, background: "linear-gradient(#1a1410, #050505)" }} />
+      <div
+        style={{
+          position: "absolute",
+          top: GROUND,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          // With the desert image: fade from see-through to dark, so there's no hard edge
+          background: USE_AI_BACKGROUNDS
+            ? "linear-gradient(rgba(5,5,5,0) 0%, rgba(5,5,5,0.85) 100%)"
+            : "linear-gradient(#1a1410, #050505)",
+        }}
+      />
       {/* Stem of the mushroom cloud */}
       <div
         style={{
@@ -548,6 +600,28 @@ const CAPTIONS: { text: string; from: number; to: number }[] = [
 export const NuclearExplainer: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 40%, #101827 0%, ${BG} 70%)` }}>
+      {USE_AI_BACKGROUNDS && (
+        <>
+          {/* Lab: hook + atom, then softer (blurred) behind the fission close-up */}
+          <Sequence durationInFrames={285}>
+            <BgImage src="ai/lab.png" duration={285} dim={0.5} />
+          </Sequence>
+          <Sequence from={285} durationInFrames={240}>
+            <BgImage src="ai/lab.png" duration={240} dim={0.65} blur={8} driftY={-20} />
+          </Sequence>
+          {/* Cosmic energy: chain reaction + E = mc² */}
+          <Sequence from={525} durationInFrames={450}>
+            <BgImage src="ai/cosmic.png" duration={450} dim={0.62} driftY={-60} />
+          </Sequence>
+          {/* Desert at dawn: explosion, then a quiet ending */}
+          <Sequence from={975} durationInFrames={240}>
+            <BgImage src="ai/desert.png" duration={240} dim={0.35} driftY={0} />
+          </Sequence>
+          <Sequence from={1215} durationInFrames={135}>
+            <BgImage src="ai/desert.png" duration={135} dim={0.78} blur={4} driftY={-20} />
+          </Sequence>
+        </>
+      )}
       <Sequence durationInFrames={105}>
         <Hook />
       </Sequence>
