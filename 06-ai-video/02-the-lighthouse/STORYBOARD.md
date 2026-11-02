@@ -40,7 +40,7 @@ Spoken slowly by a calm, older voice. About 35 words, so there's room to breathe
 | 4 | 0:13–0:17 | 4s | The beam sweeps slowly across a dark, empty sea | Wide, still | Low drone, distant waves | 🟢 Way 1: **made!** (`make_code_shots.sh`) · AI upgrade optional |
 | 5 | 0:17–0:21 | 4s | Keeper's silhouette at a rain-streaked window, looking out | Medium shot from behind | Rain on glass, narration | 🔴 Way 3 · or 🟡 Way 2 (stock) |
 | 6 | 0:21–0:25 | 4s | Far on the black horizon, a tiny light blinks back. Once. Twice. | Very slow push-in toward the dot | Everything goes quiet → *"Until tonight."* | 🟢 Way 1: **made!** (`make_code_shots.sh`) |
-| 7 | 0:25–0:30 | 5s | End card: **THE LIGHTHOUSE** · *coming soon* | Fade in, fade out | Drone swells, then silence | 🟢 Way 1: reuse our title card code |
+| 7 | 0:25–0:30 | 5s | End card: **THE LIGHTHOUSE** · *coming soon* | Fade in, fade out | Drone swells, then silence | 🟢 Way 1: **made!** (`make_rough_cut.sh`) |
 
 **Total: 30 seconds** (5 + 4 + 4 + 4 + 4 + 4 + 5).
 
@@ -118,6 +118,7 @@ A good video prompt answers: **shot type + subject + action + place + light + ca
 - [x] Shots 4 and 6: made with code
 - [ ] Collect / make shots 2, 3, 5
 - [ ] Record narration
-- [ ] Shot 7: end card
-- [ ] Edit everything together
+- [x] Shot 7: end card
+- [x] Rough cut (placeholders for shots 2, 3, 5; captions instead of voice)
+- [ ] Edit everything together (final)
 - [ ] Export the final 30-second film
