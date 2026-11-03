@@ -3,6 +3,7 @@ import { AbsoluteFill, interpolate, Sequence, useCurrentFrame, useVideoConfig } 
 import timeline from "./timeline.json";
 import { Photo, Clip, Narration, ReservesChart, GoldCounter, DocumentPage, Credits, FilmLook, SmallCaption } from "./Shots";
 import { KineticChapter, KineticTitle, MotionBeat, Whip, WhipFilters } from "./Motion";
+import { CollageScene, COLLAGES } from "./Collage";
 import { RouteMap, Place, Route } from "./RouteMap";
 import { TVBulletin } from "../news/TVBulletin";
 import { Newspaper } from "../news/Newspaper";
@@ -40,7 +41,7 @@ type Shot = {
 };
 
 // Graphics shots whip in and out sideways; photos and clips cross-dissolve.
-const WHIP = new Set(["tv", "paper", "map", "chart", "gold", "beat", "chapter"]);
+const WHIP = new Set(["collage", "tv", "paper", "map", "chart", "gold", "beat", "chapter"]);
 
 const FPS = timeline.fps;
 const OVERLAP = timeline.overlap;
@@ -118,6 +119,8 @@ const Visual: React.FC<{ s: Shot }> = ({ s }) => {
       return <KineticTitle />;
     case "chapter":
       return <KineticChapter number={s.number!} title={s.title!} date={s.date!} />;
+    case "collage":
+      return <CollageScene items={COLLAGES[s.map!]} />;
     case "beat":
       return <MotionBeat icon={s.icon as "gold"} text={s.text!} sub={s.sub} theme={s.theme as "light"} burst={s.burst} seed={s.text} />;
     case "chart":

@@ -36,6 +36,10 @@ for (const s of t.shots) {
   if (s.sfx) (cue[s.sfx] ||= []).push((c / t.fps).toFixed(3));
   c += Math.round(s.sec * t.fps) - t.overlap;
 }
+for (const T of cue.collage || []) {
+  (cue.paper ||= []).push(...[0.15, 0.45, 0.8, 1.2].map((k) => (+T + k).toFixed(3)));
+  (cue.hit ||= []).push((+T + 1.7).toFixed(3));
+}
 const dur = ((c + t.overlap) / t.fps).toFixed(3);
 const hit = (T, a, f, d) => `gte(t,${T})*${a}*sin(2*PI*((${f}/4)*max(0,t-${T})+(${f}/8)*(1-exp(-6*max(0,t-${T})))))*exp(-${d}*max(0,t-${T}))`;
 const tones = [

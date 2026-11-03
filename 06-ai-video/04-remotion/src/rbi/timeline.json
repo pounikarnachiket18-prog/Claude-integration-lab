@@ -19,14 +19,6 @@
   },
   {
    "kind": "photo",
-   "src": "rbi/rbi_building.png",
-   "sec": 6,
-   "move": "in",
-   "caption": "Reserve Bank of India, Mumbai",
-   "text": "The Reserve Bank of India is running out of options."
-  },
-  {
-   "kind": "photo",
    "src": "rbi/ai_vault.png",
    "sec": 6,
    "move": "in",
@@ -40,6 +32,13 @@
    "move": "out",
    "caption": "AI illustration",
    "text": "It sends the nation's *gold* abroad, as security for a loan."
+  },
+  {
+   "kind": "collage",
+   "map": "secret",
+   "sec": 5,
+   "text": "Its gold is about to leave the country, in *secret.*",
+   "sfx": "collage"
   },
   {
    "kind": "title",
@@ -104,6 +103,13 @@
    "caption": "Representative footage",
    "text": "Ratings agencies downgrade India. Non-resident Indians *pull out* their deposits.",
    "grade": "contrast(1.1) saturate(0.9)"
+  },
+  {
+   "kind": "collage",
+   "map": "storm",
+   "sec": 5,
+   "text": "War abroad. Chaos at home. A *perfect storm.*",
+   "sfx": "collage"
   },
   {
    "kind": "chapter",
@@ -189,6 +195,13 @@
    "label": "MAY 1991  ·  VIA SBI TO UNION BANK OF SWITZERLAND",
    "sec": 6,
    "sfx": "riser"
+  },
+  {
+   "kind": "collage",
+   "map": "firstgold",
+   "sec": 5,
+   "text": "Sold, with an option to *buy it back.*",
+   "sfx": "collage"
   },
   {
    "kind": "tv",
@@ -325,6 +338,13 @@
    "sfx": "pop"
   },
   {
+   "kind": "collage",
+   "map": "pledge",
+   "sec": 5.5,
+   "text": "Two central banks. One loan. *India's gold* as security.",
+   "sfx": "collage"
+  },
+  {
    "kind": "paper",
    "id": 0,
    "sec": 8,
@@ -367,6 +387,13 @@
    "sec": 7,
    "caption": "Budget speech, 24 July 1991",
    "sfx": "paper"
+  },
+  {
+   "kind": "collage",
+   "map": "speech",
+   "sec": 5,
+   "text": "A Finance Minister quotes *Victor Hugo.*",
+   "sfx": "collage"
   },
   {
    "kind": "quote",
@@ -414,13 +441,6 @@
    "text": "Today, India holds one of the *largest foreign exchange reserves* in the world."
   },
   {
-   "kind": "map",
-   "map": "return",
-   "sec": 9,
-   "text": "And in 2024, the RBI brings about *100 tonnes* of its gold home from the UK.",
-   "sfx": "whoosh"
-  },
-  {
    "kind": "beat",
    "icon": "gold",
    "sec": 4,
@@ -429,6 +449,13 @@
    "theme": "light",
    "burst": "#C9982E",
    "sfx": "pop"
+  },
+  {
+   "kind": "collage",
+   "map": "home",
+   "sec": 6,
+   "text": "In 2024, the RBI brings about *100 tonnes* of its gold home from the UK.",
+   "sfx": "collage"
   },
   {
    "kind": "quote",
