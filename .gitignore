@@ -17,3 +17,6 @@ __pycache__/
 # Rendered video shots: big files that the scripts can rebuild any time
 06-ai-video/**/shots/
 06-ai-video/**/renders/
+
+# RBI documentary source media: third-party images and clips, not for a public repo
+06-ai-video/06-rbi-documentary/assets/
