@@ -32,6 +32,8 @@ type Shot = {
   map?: string;
   sfx?: string;
   icon?: string;
+  trimBefore?: number;
+  grade?: string;
   sub?: string;
   theme?: string;
   burst?: string;
@@ -111,7 +113,7 @@ const Visual: React.FC<{ s: Shot }> = ({ s }) => {
     case "photo":
       return <Photo src={s.src!} move={(s.move ?? "in") as "in"} fit={(s.fit ?? "cover") as "cover"} bw={s.bw} caption={s.caption} dim={0.3} />;
     case "clip":
-      return <Clip src={s.src!} vertical={s.vertical} caption={s.caption} dim={0.25} />;
+      return <Clip src={s.src!} vertical={s.vertical} caption={s.caption} dim={0.25} trimBefore={s.trimBefore} grade={s.grade} />;
     case "title":
       return <KineticTitle />;
     case "chapter":

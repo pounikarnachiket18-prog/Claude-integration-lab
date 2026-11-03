@@ -71,11 +71,13 @@ export const Photo: React.FC<{
 };
 
 // ---- A low-resolution or vertical clip, placed on a blurred copy of itself ---------
-export const Clip: React.FC<{ src: string; vertical?: boolean; dim?: number; caption?: string; cropBottom?: boolean }> = ({
+export const Clip: React.FC<{ src: string; vertical?: boolean; dim?: number; caption?: string; cropBottom?: boolean; trimBefore?: number; grade?: string }> = ({
   src,
   vertical = false,
   dim = 0.2,
   caption,
+  trimBefore,
+  grade = "contrast(1.08) saturate(0.85) blur(0.4px)",
 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
@@ -88,6 +90,7 @@ export const Clip: React.FC<{ src: string; vertical?: boolean; dim?: number; cap
       <OffthreadVideo
         src={staticFile(src)}
         muted
+        trimBefore={trimBefore}
         style={{
           position: "absolute",
           left: vertical ? (1920 - 1080 * (360 / 640)) / 2 : 0,
@@ -95,7 +98,7 @@ export const Clip: React.FC<{ src: string; vertical?: boolean; dim?: number; cap
           height: "100%",
           objectFit: "cover",
           transform: `scale(${scale})`,
-          filter: "contrast(1.08) saturate(0.85) blur(0.4px)",
+          filter: grade,
         }}
       />
       <AbsoluteFill style={{ backgroundColor: `rgba(0,0,0,${dim})` }} />

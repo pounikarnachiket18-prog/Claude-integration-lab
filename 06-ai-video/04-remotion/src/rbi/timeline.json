@@ -97,12 +97,13 @@
    "text": "Chandra Shekhar becomes Prime Minister, at the head of a *minority government.*"
   },
   {
-   "kind": "photo",
-   "src": "rbi/mint_road.png",
+   "kind": "clip",
+   "src": "rbi/v_market.mp4",
+   "trimBefore": 300,
    "sec": 7,
-   "move": "right",
-   "caption": "Mint Road, Mumbai",
-   "text": "Ratings agencies downgrade India. Non-resident Indians *pull out* their deposits."
+   "caption": "Representative footage",
+   "text": "Ratings agencies downgrade India. Non-resident Indians *pull out* their deposits.",
+   "grade": "contrast(1.1) saturate(0.9)"
   },
   {
    "kind": "chapter",
@@ -271,6 +272,16 @@
    "theme": "dark",
    "burst": "#E8443A",
    "sfx": "pop"
+  },
+  {
+   "kind": "clip",
+   "src": "rbi/v_plane.mp4",
+   "trimBefore": 0,
+   "sec": 5,
+   "caption": "Representative footage (modern aircraft)",
+   "text": "Under tight security, the gold is flown out on a *chartered cargo plane.*",
+   "grade": "contrast(1.12) saturate(0.55) sepia(0.25)",
+   "sfx": "whoosh"
   },
   {
    "kind": "map",
