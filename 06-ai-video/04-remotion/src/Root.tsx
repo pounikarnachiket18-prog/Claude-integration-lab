@@ -1,3 +1,4 @@
+import { RBIDocumentary, RBI_DURATION } from "./rbi/RBIDocumentary";
 import { Composition } from "remotion";
 import { MyComposition } from "./Composition";
 import { LighthouseTitle } from "./LighthouseTitle";
@@ -110,6 +111,9 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+
+      {/* RBI documentary: "1991: The Year India Pawned Its Gold" (run render_rbi_documentary.sh) */}
+      <Composition id="RBIDocumentary" component={RBIDocumentary} durationInFrames={RBI_DURATION} fps={30} width={1920} height={1080} />
 
       {/* RBI documentary: 1990s TV-news and newspaper graphics (recreations) */}
       <Composition id="NewsReel" component={NewsReel} durationInFrames={NEWS_REEL_DURATION} fps={30} width={1920} height={1080} />
