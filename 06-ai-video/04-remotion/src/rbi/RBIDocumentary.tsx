@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
 import timeline from "./timeline.json";
-import { Photo, Clip, Narration, ChapterCard, TitleCard, ReservesChart, GoldCounter, DocumentPage, Credits, FilmLook, SmallCaption } from "./Shots";
+import { Photo, Clip, Narration, ReservesChart, GoldCounter, DocumentPage, Credits, FilmLook, SmallCaption } from "./Shots";
+import { KineticChapter, KineticTitle, MotionBeat, Whip, WhipFilters } from "./Motion";
 import { RouteMap, Place, Route } from "./RouteMap";
 import { TVBulletin } from "../news/TVBulletin";
 import { Newspaper } from "../news/Newspaper";
@@ -30,7 +31,14 @@ type Shot = {
   id?: number;
   map?: string;
   sfx?: string;
+  icon?: string;
+  sub?: string;
+  theme?: string;
+  burst?: string;
 };
+
+// Graphics shots whip in and out sideways; photos and clips cross-dissolve.
+const WHIP = new Set(["tv", "paper", "map", "chart", "gold", "beat", "chapter"]);
 
 const FPS = timeline.fps;
 const OVERLAP = timeline.overlap;
@@ -95,6 +103,9 @@ const Fade: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <AbsoluteFill style={{ opacity: o }}>{children}</AbsoluteFill>;
 };
 
+const Wrap: React.FC<{ whip: boolean; children: React.ReactNode }> = ({ whip, children }) =>
+  whip ? <Whip>{children}</Whip> : <Fade>{children}</Fade>;
+
 const Visual: React.FC<{ s: Shot }> = ({ s }) => {
   switch (s.kind) {
     case "photo":
@@ -102,9 +113,11 @@ const Visual: React.FC<{ s: Shot }> = ({ s }) => {
     case "clip":
       return <Clip src={s.src!} vertical={s.vertical} caption={s.caption} dim={0.25} />;
     case "title":
-      return <TitleCard />;
+      return <KineticTitle />;
     case "chapter":
-      return <ChapterCard number={s.number!} title={s.title!} date={s.date!} />;
+      return <KineticChapter number={s.number!} title={s.title!} date={s.date!} />;
+    case "beat":
+      return <MotionBeat icon={s.icon as "gold"} text={s.text!} sub={s.sub} theme={s.theme as "light"} burst={s.burst} seed={s.text} />;
     case "chart":
       return <ReservesChart />;
     case "gold":
@@ -146,16 +159,17 @@ export const RBIDocumentary: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       {SHOTS.map((s, i) => (
         <Sequence key={i} from={RBI_STARTS[i]} durationInFrames={Math.round(s.sec * FPS)}>
-          <Fade>
+          <Wrap whip={WHIP.has(s.kind)}>
             <Visual s={s} />
-            {s.text && s.kind !== "quote" && (
+            {s.text && s.kind !== "quote" && s.kind !== "beat" && (
               <AbsoluteFill style={{ background: `linear-gradient(to top, rgba(0,0,0,${s.kind === "doc" ? 0.92 : 0.6}) 0%, rgba(0,0,0,${s.kind === "doc" ? 0.8 : 0.25}) 30%, transparent 50%)` }} />
             )}
-            {s.text && <Narration text={s.text} position={s.kind === "quote" ? "center" : "bottom"} size={s.kind === "quote" ? 72 : 50} delay={8} />}
-          </Fade>
+            {s.text && s.kind !== "beat" && <Narration text={s.text} position={s.kind === "quote" ? "center" : "bottom"} size={s.kind === "quote" ? 72 : 50} delay={8} />}
+          </Wrap>
         </Sequence>
       ))}
       <FilmLook />
+      <WhipFilters />
     </AbsoluteFill>
   );
 };

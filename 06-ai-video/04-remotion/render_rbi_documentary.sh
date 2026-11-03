@@ -2,11 +2,11 @@
 # render_rbi_documentary.sh: renders "1991: The Year India Pawned Its Gold",
 # a 5.5-minute faceless documentary with NO voice (the story is on-screen text).
 #
-# Sound:
+# Sound (no voice):
 #   music   two Pixabay tracks (atlasaudio "Tension Documentary", leberch "Dark History"),
 #           cross-faded: atlasaudio -> leberch -> atlasaudio again, faded out at the end
 #   effects generated from math and noise, placed from the "sfx" cues in src/rbi/timeline.json:
-#           boom (chapter cards), hit, whoosh (maps), riser (charts), static (TV), paper (documents)
+#           boom (chapter cards), pop + typing clicks (motion beats), whip whooshes, hit, whoosh (maps), riser (charts), static (TV), paper (documents)
 #   level   -14 LUFS, the YouTube loudness target
 #
 # The music files live in 06-rbi-documentary/assets/ (kept out of git).
@@ -41,9 +41,11 @@ const hit = (T, a, f, d) => `gte(t,${T})*${a}*sin(2*PI*((${f}/4)*max(0,t-${T})+(
 const tones = [
   ...(cue.boom || []).map((T) => hit(T, 0.9, 110, 2.2)),
   ...(cue.hit || []).map((T) => hit(T, 0.6, 170, 4)),
+  ...(cue.pop || []).map((T) => hit((+T + 0.13).toFixed(3), 0.55, 520, 10)),
+  ...(cue.pop || []).flatMap((T) => [0.5, 0.8, 1.1, 1.4, 1.7].map((k) => `gte(t,${T}+${k})*0.05*sin(2*PI*2200*t)*exp(-60*max(0,t-${T}-${k}))`)),
 ].join("+") || "0";
 const sum = (list, f) => (list || []).map(f).join("+") || "0";
-const whoosh = sum(cue.whoosh, (T) => `0.6*between(t,${T},${T}+1.4)*sin(PI*(t-${T})/1.4)`) + "+" + sum(cue.boom, (T) => `0.35*between(t,${T}-0.8,${T})*pow((t-${T}+0.8)/0.8,2)`);
+const whoosh = sum([...(cue.whoosh || []), ...(cue.pop || []), ...(cue.boom || [])], (T) => `0.6*between(t,${T}-0.15,${T}+0.35)*sin(PI*(t-${T}+0.15)/0.5)`) + "+" + sum(cue.whoosh, (T) => `0.6*between(t,${T},${T}+1.4)*sin(PI*(t-${T})/1.4)`) + "+" + sum(cue.boom, (T) => `0.35*between(t,${T}-0.8,${T})*pow((t-${T}+0.8)/0.8,2)`);
 const riser = sum(cue.riser, (T) => `0.5*between(t,${T},${T}+2.5)*pow((t-${T})/2.5,2)`);
 const stat = sum(cue.static, (T) => `0.35*between(t,${T},${T}+0.45)+0.06*between(t,${T}+0.45,${T}+7.5)`);
 const paper = sum(cue.paper, (T) => `0.5*between(t,${T}+0.1,${T}+0.7)*abs(sin(PI*(t-${T})*9))`);

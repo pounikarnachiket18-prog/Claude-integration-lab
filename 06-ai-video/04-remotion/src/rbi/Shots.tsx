@@ -1,4 +1,5 @@
 import React from "react";
+import { Scribble } from "./Motion";
 import {
   AbsoluteFill,
   Easing,
@@ -134,8 +135,9 @@ export const Narration: React.FC<{ text: string; position?: "bottom" | "center";
         {words.map(({ w, accent }, i) => {
           const p = spring({ frame: frame - delay - i * 2.2, fps, config: { damping: 200 } });
           return (
-            <span key={i} style={{ display: "inline-block", margin: "0 0.13em", color: accent ? GOLD : undefined, opacity: p, transform: `translateY(${interpolate(p, [0, 1], [16, 0])}px)` }}>
+            <span key={i} style={{ position: "relative", display: "inline-block", margin: "0 0.13em", color: accent ? GOLD : undefined, opacity: p, transform: `translateY(${interpolate(p, [0, 1], [16, 0])}px)` }}>
               {w}
+              {accent && <Scribble progress={interpolate(frame, [delay + i * 2.2 + 10, delay + i * 2.2 + 26], [0, 1], clamp)} />}
             </span>
           );
         })}
